@@ -1,0 +1,13 @@
+.kanban-error {
+  position: absolute;
+  display: flex;
+  gap: 5px;
+
+  align-items: center;
+  padding: 2px 0;
+
+  &__message {
+    color: #c85f5f;
+    font-size: 11px;
+  }
+}

@@ -1,0 +1,11 @@
+.kanban-board {
+  padding: 25px;
+  display: flex;
+  flex-grow: 1;
+  gap: 25px;
+  overflow-x: auto;
+
+  .kanban-loader {
+    width: 100%;
+  }
+}

@@ -1,0 +1,17 @@
+.kanban-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 20px;
+
+  img {
+    width: 80px;
+  }
+
+  .message {
+    font-size: 20px;
+    font-weight: 500;
+    color: #e6e8ff;
+  }
+}

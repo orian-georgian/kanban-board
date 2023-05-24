@@ -1,0 +1,19 @@
+.kanban-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 25px;
+
+  svg {
+    width: 28px;
+    height: 28px;
+    margin-top: 3px;
+    margin-left: -2px;
+  }
+
+  span {
+    color: #e6e8ff;
+    font-weight: 700;
+    font-size: 32px;
+  }
+}

@@ -1,0 +1,22 @@
+.top-bar {
+  background-color: rgb(44, 44, 56);
+  border-bottom: 1px solid rgb(63, 63, 75);
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  height: 90px;
+
+  &__name {
+    color: #fafbff;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  &__add-button {
+    margin-right: 20px;
+  }
+
+  svg {
+    cursor: pointer;
+  }
+}
