@@ -16,7 +16,9 @@ export default function TopBar() {
           <FontAwesomeIcon icon={faPlus} /> Add New Task
         </button>
       )}
-      {!loading && <FontAwesomeIcon icon={faEllipsisV} color="#7b818f" />}
+      {!loading && (
+        <FontAwesomeIcon className="ellipses-icon" icon={faEllipsisV} />
+      )}
     </header>
   );
 }

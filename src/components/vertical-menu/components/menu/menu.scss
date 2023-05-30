@@ -1,5 +1,7 @@
+@import "../../../../styles/variables.scss";
+
 .kanban-menu {
-  color: rgb(123, 129, 143);
+  color: $light-gray;
 
   &__summary {
     font-size: 12px;
@@ -19,41 +21,59 @@
       cursor: pointer;
       border-radius: 0 30px 30px 0;
 
+      span {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.dark-theme {
+  .kanban-menu {
+    .menu-item {
+      svg: {
+        path: {
+          fill: $light-gray;
+        }
+      }
+
       &.add-board {
-        color: #605bab;
+        color: $clean-purple;
+
+        svg {
+          path {
+            fill: $clean-purple;
+          }
+        }
 
         &:hover {
-          color: #524ba9;
+          color: $dirty-purple;
 
           svg {
             path {
-              fill: #524ba9;
+              fill: $dirty-purple;
             }
           }
         }
       }
 
-      span {
-        margin-left: 10px;
-      }
-
       &.active {
-        background-color: rgb(100, 95, 198);
-        color: #e6e8ff;
+        background-color: $clean-purple;
+        color: $dirty-white;
 
         svg {
           path {
-            fill: #e6e8ff;
+            fill: $dirty-white;
           }
         }
       }
 
       &:hover {
-        color: #e6e8ff;
+        color: $dirty-white;
 
         svg {
           path {
-            fill: #e6e8ff;
+            fill: $dirty-white;
           }
         }
       }

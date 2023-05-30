@@ -9,7 +9,6 @@ export default function ErrorInfo({ message }) {
       <FontAwesomeIcon
         className="kanban-error__icon"
         icon={faTriangleExclamation}
-        color="#c85f5f"
         size="xs"
       />
       <span className="kanban-error__message">{message}</span>

@@ -14,6 +14,7 @@ import "./task-details-popup.scss";
 export default function TaskDetailsPopup() {
   const selectedTask = useSelector((state) => state.tasks.selectedTask);
   const activeBoard = useSelector((state) => state.boards.activeBoard);
+  const theme = useSelector((state) => state.layout.theme);
   const checkedSubtasks =
     selectedTask?.subtasks.filter(({ checked }) => checked)?.length ?? 0;
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ export default function TaskDetailsPopup() {
       shouldCloseOnOverlayClick={true}
       style={modalStyles}
     >
-      <div className="kanban-popup">
+      <div className={`kanban-popup ${theme}-theme`}>
         <div className="kanban-popup__title">{selectedTask.name}</div>
         <div className="kanban-popup__description">
           {selectedTask.description}
@@ -64,13 +65,7 @@ export default function TaskDetailsPopup() {
                 onClick={(e) => onItemChecked(e, { id, checked })}
               >
                 <div className="form-item__checkbox-box">
-                  {checked && (
-                    <FontAwesomeIcon
-                      icon={faCheck}
-                      color="#fafbff"
-                      size="2xs"
-                    />
-                  )}
+                  {checked && <FontAwesomeIcon icon={faCheck} size="2xs" />}
                 </div>
                 <span className="form-item__checkbox-name">{name}</span>
               </div>

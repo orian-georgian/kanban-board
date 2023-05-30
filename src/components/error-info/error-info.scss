@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .kanban-error {
   position: absolute;
   display: flex;
@@ -6,8 +8,14 @@
   align-items: center;
   padding: 2px 0;
 
+  svg {
+    path {
+      fill: $honest-error;
+    }
+  }
+
   &__message {
-    color: #c85f5f;
+    color: $honest-error;
     font-size: 11px;
   }
 }

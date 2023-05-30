@@ -10,6 +10,7 @@ import Loader from "./components/loader/loader";
 
 export default function Content() {
   const loading = useSelector((state) => state.boards.loading);
+  const theme = useSelector((state) => state.layout.theme);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,14 +27,14 @@ export default function Content() {
 
   if (loading) {
     return (
-      <div className="kanban-container">
+      <div className={`kanban-container ${theme}-theme`}>
         <Loader message="Kanban is loading..." />
       </div>
     );
   }
 
   return (
-    <div className="kanban-app">
+    <div className={`kanban-app ${theme}-theme`}>
       <section className="kanban-app__item menu">
         <VerticalMenu />
       </section>

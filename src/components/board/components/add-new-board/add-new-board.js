@@ -25,6 +25,7 @@ export default function AddNewBoard() {
   const showNewBoardPopup = useSelector(
     (state) => state.boards.showNewBoardPopup
   );
+  const theme = useSelector((state) => state.layout.theme);
   const boards = useSelector((state) => state.boards.data);
   const [name, setName] = useState("");
   const [columns, setColumns] = useState(statuses);
@@ -197,7 +198,7 @@ export default function AddNewBoard() {
       shouldCloseOnOverlayClick={false}
       style={modalStyles}
     >
-      <div className="kanban-popup create-board-popup">
+      <div className={`kanban-popup create-board-popup ${theme}-theme`}>
         <div className="kanban-popup__title">
           <span>Create New Board</span>
           <FontAwesomeIcon
@@ -217,6 +218,7 @@ export default function AddNewBoard() {
           >
             <input
               type="text"
+              autoFocus={true}
               placeholder="e.g. Department Store"
               value={name}
               onChange={onNameChange}
@@ -267,6 +269,7 @@ export default function AddNewBoard() {
               >
                 <input
                   type="text"
+                  autoFocus={true}
                   placeholder="e.g. Testing"
                   value={columnName}
                   onChange={onColumnNameChange}

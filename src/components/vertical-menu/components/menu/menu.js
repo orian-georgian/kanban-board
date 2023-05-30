@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTableList } from "@fortawesome/free-solid-svg-icons";
 import AddNewBoard from "../../../board/components/add-new-board/add-new-board";
@@ -27,6 +28,12 @@ export default function Menu() {
     dispatch(setNewBoardPopupVisibility(true));
   }
 
+  useEffect(() => {
+    if (!activeBoard) {
+      dispatch(setActiveBoard(boards[0]));
+    }
+  }, []);
+
   return (
     <div className="kanban-menu">
       <div className="kanban-menu__summary">ALL BOARDS ({boards.length})</div>
@@ -39,12 +46,12 @@ export default function Menu() {
             }`}
             onClick={(e) => onBoardSelected(e, board)}
           >
-            <FontAwesomeIcon icon={faTableList} color="#7b818f" />
+            <FontAwesomeIcon icon={faTableList} />
             <span>{board.name}</span>
           </li>
         ))}
         <li className="menu-item add-board" onClick={onAddNewBoardClick}>
-          <FontAwesomeIcon icon={faTableList} color="#605bab" />
+          <FontAwesomeIcon icon={faTableList} />
           <span>+ Create New Board</span>
         </li>
       </ul>

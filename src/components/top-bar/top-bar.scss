@@ -1,13 +1,13 @@
+@import "../../styles/variables.scss";
+
 .top-bar {
-  background-color: rgb(44, 44, 56);
-  border-bottom: 1px solid rgb(63, 63, 75);
+  border-bottom: 1px solid;
   display: flex;
   align-items: center;
   padding: 25px;
   height: 90px;
 
   &__name {
-    color: #fafbff;
     font-size: 24px;
     font-weight: 700;
   }
@@ -18,5 +18,22 @@
 
   svg {
     cursor: pointer;
+  }
+}
+
+.dark-theme {
+  .top-bar {
+    background-color: $dark-gray;
+    border-color: $border-gray;
+
+    &__name {
+      color: $snow-white;
+    }
+
+    .ellipses-icon {
+      path {
+        fill: $light-gray;
+      }
+    }
   }
 }

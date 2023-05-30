@@ -14,7 +14,7 @@ export default function Column({ name, color }) {
   return (
     <div className="kanban-tasks-column">
       <div className="kanban-tasks-column__title">
-        <FontAwesomeIcon icon={faCircle} size="xs" color={color ?? "#7b818f"} />
+        <FontAwesomeIcon icon={faCircle} size="xs" color={color} />
         <span>{`${name} (${tasks.length})`}</span>
       </div>
       {tasks.map((task) => (

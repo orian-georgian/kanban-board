@@ -1,11 +1,11 @@
+@import "../../../../styles/variables.scss";
+
 .kanban-popup.create-board-popup {
   .board-column {
-    background-color: #2c2c38;
     width: 100%;
     border-radius: 4px;
-    border: 1px solid #3d3d49;
+    border: 1px solid;
     padding: 10px;
-    color: #fafbff;
     font-weight: 500;
     font-size: 13px;
     display: flex;
@@ -17,12 +17,6 @@
     svg:last-child {
       margin-left: auto;
       cursor: pointer;
-
-      &:hover {
-        path {
-          fill: #524ba9;
-        }
-      }
     }
   }
 
@@ -34,5 +28,21 @@
 
   .save-button {
     margin-top: 10px;
+  }
+
+  &.dark-theme {
+    .board-column {
+      background-color: $dark-gray;
+      border-color: $border-gray;
+      color: $snow-white;
+
+      svg:last-child {
+        &:hover {
+          path {
+            fill: $clean-purple;
+          }
+        }
+      }
+    }
   }
 }

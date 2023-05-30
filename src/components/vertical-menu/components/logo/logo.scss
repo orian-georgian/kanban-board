@@ -1,3 +1,5 @@
+@import "../../../../styles/variables.scss";
+
 .kanban-logo {
   display: flex;
   align-items: center;
@@ -12,8 +14,21 @@
   }
 
   span {
-    color: #e6e8ff;
     font-weight: 700;
     font-size: 32px;
+  }
+}
+
+.dark-theme {
+  .kanban-logo {
+    svg {
+      path {
+        fill: $dirty-purple;
+      }
+    }
+
+    span {
+      color: $snow-white;
+    }
   }
 }
