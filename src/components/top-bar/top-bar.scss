@@ -37,3 +37,20 @@
     }
   }
 }
+
+.light-theme {
+  .top-bar {
+    background-color: $all-white;
+    border-color: $shy-border-gray;
+
+    &__name {
+      color: $dark-gray;
+    }
+
+    .ellipses-icon {
+      path {
+        fill: $dark-gray;
+      }
+    }
+  }
+}

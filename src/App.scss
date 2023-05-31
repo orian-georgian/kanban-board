@@ -61,27 +61,17 @@
   }
 
   &.button-primary {
-    background: #625fc8;
-    color: #fafbff;
+    background: $clean-purple;
+    color: $all-white;
 
     &:hover:not(:disabled),
     &:focus {
-      background: #524ba9;
+      background: $dirty-purple;
     }
 
     &:disabled {
       opacity: 0.3;
       cursor: default;
-    }
-  }
-
-  &.button-default {
-    background: #fafbff;
-    color: #625fc8;
-
-    &:hover,
-    &:focus {
-      background: #cdd0d7;
     }
   }
 }
@@ -152,7 +142,7 @@
         outline: none;
 
         &::placeholder {
-          opacity: 0.2;
+          opacity: 0.4;
         }
       }
     }
@@ -275,11 +265,20 @@
 }
 
 .dark-theme {
+  &.kanban-container,
+  &.kanban-app {
+    background-color: $deep-dark-gray;
+  }
+
   &.kanban-popup {
     .kanban-popup__title {
-      color: $snow-white;
+      color: $all-white;
 
       .close-icon {
+        path {
+          fill: $all-white;
+        }
+
         &:hover {
           path {
             fill: $dirty-white;
@@ -357,6 +356,127 @@
         &::after {
           color: $clean-purple;
         }
+      }
+    }
+  }
+
+  .kanban-button {
+    &.button-default {
+      background: $all-white;
+      color: $clean-purple;
+
+      &:hover,
+      &:focus {
+        background: $decent-gray;
+      }
+    }
+  }
+}
+
+.light-theme {
+  &.kanban-container,
+  &.kanban-app {
+    background-color: $all-white;
+  }
+
+  &.kanban-popup {
+    .kanban-popup__title {
+      color: $dark-gray;
+
+      .close-icon {
+        path {
+          fill: $dark-gray;
+        }
+
+        &:hover {
+          path {
+            fill: $deep-dark-gray;
+          }
+        }
+      }
+    }
+
+    .kanban-popup__description {
+      color: $light-gray;
+    }
+
+    .form-item {
+      &__label {
+        color: $dark-gray;
+      }
+
+      .input-invalid {
+        input {
+          border-color: $honest-error;
+        }
+      }
+
+      &__colorbox,
+      &__textbox {
+        input {
+          background-color: $all-white;
+          border-color: $shy-border-gray;
+          color: $dark-gray;
+
+          &::placeholder {
+            color: $dark-gray;
+          }
+        }
+      }
+
+      &__checkbox {
+        background-color: $soft-gray;
+
+        &.checked {
+          .form-item__checkbox-box {
+            background-color: $clean-purple;
+
+            svg {
+              path: {
+                fill: $all-white;
+              }
+            }
+          }
+
+          .form-item__checkbox-name {
+            color: $light-gray;
+          }
+        }
+
+        &.unchecked {
+          .form-item__checkbox-box {
+            background-color: $all-white;
+            border-color: $shy-border-gray;
+          }
+
+          .form-item__checkbox-name {
+            color: $dark-gray;
+          }
+        }
+      }
+
+      &__selectbox {
+        select {
+          background-color: $all-white;
+          border-color: $shy-border-gray;
+          color: $dark-gray;
+        }
+
+        &::after {
+          color: $clean-purple;
+        }
+      }
+    }
+  }
+
+  .kanban-button {
+    &.button-default {
+      background: $dark-gray;
+      color: $all-white;
+
+      &:hover,
+      &:focus {
+        background: $deep-dark-gray;
       }
     }
   }

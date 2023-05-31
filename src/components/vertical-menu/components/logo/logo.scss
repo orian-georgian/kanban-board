@@ -11,6 +11,10 @@
     height: 28px;
     margin-top: 3px;
     margin-left: -2px;
+
+    path {
+      fill: $dirty-purple;
+    }
   }
 
   span {
@@ -21,14 +25,16 @@
 
 .dark-theme {
   .kanban-logo {
-    svg {
-      path {
-        fill: $dirty-purple;
-      }
-    }
-
     span {
       color: $snow-white;
+    }
+  }
+}
+
+.light-theme {
+  .kanban-logo {
+    span {
+      color: $dark-gray;
     }
   }
 }

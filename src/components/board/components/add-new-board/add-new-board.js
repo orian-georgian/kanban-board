@@ -1,7 +1,6 @@
 import Modal from "react-modal";
 import { useState, useRef } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
-import { modalStyles } from "../../../../constants/general";
 import {
   setNewBoardPopupVisibility,
   addNewBoard,
@@ -18,6 +17,7 @@ import {
   faSave,
   faTableList,
 } from "@fortawesome/free-solid-svg-icons";
+import usePopupStyles from "../../../../hooks/use-popup-styles";
 
 import "./add-new-board.scss";
 
@@ -33,6 +33,7 @@ export default function AddNewBoard() {
   const [color, setColor] = useState("#ffff00");
   const [columnName, setColumnName] = useState("");
   const [errors, setErrors] = useState({ name: null, columnName: null });
+  const modalStyles = usePopupStyles();
   const dispatch = useDispatch();
   const dragItem = useRef();
   const dragOverItem = useRef();
@@ -205,7 +206,6 @@ export default function AddNewBoard() {
             className="close-icon"
             icon={faTimes}
             size="lg"
-            color="#fafbff"
             onClick={onCloseModal}
           />
         </div>
@@ -254,7 +254,7 @@ export default function AddNewBoard() {
           </div>
           {!addModeActive && (
             <button
-              className="kanban-button button-default button-100"
+              className="add-column-button kanban-button button-default button-100"
               onClick={onAddNewColumn}
             >
               <FontAwesomeIcon icon={faPlus} /> Add New Column

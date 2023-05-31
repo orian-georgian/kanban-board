@@ -30,3 +30,13 @@
     }
   }
 }
+
+.light-theme {
+  .kanban-tasks-column {
+    &__title {
+      span {
+        color: $dark-gray;
+      }
+    }
+  }
+}

@@ -36,3 +36,20 @@
     }
   }
 }
+
+.light-theme {
+  .kanban-task {
+    background-color: $all-white;
+    -webkit-box-shadow: 1px 5px 5px 0px $shy-border-gray;
+    -moz-box-shadow: 1px 5px 5px 0px $shy-border-gray;
+    box-shadow: 1px 5px 5px 0px $shy-border-gray;
+
+    &__title {
+      color: $dark-gray;
+    }
+
+    &__subtasks {
+      color: $light-gray;
+    }
+  }
+}

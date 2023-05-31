@@ -7,7 +7,8 @@ import {
 } from "../../../../redux/tasks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { modalStyles } from "../../../../constants/general";
+import usePopupStyles from "../../../../hooks/use-popup-styles";
+import { colors } from "../../../../constants/general";
 
 import "./task-details-popup.scss";
 
@@ -18,6 +19,7 @@ export default function TaskDetailsPopup() {
   const checkedSubtasks =
     selectedTask?.subtasks.filter(({ checked }) => checked)?.length ?? 0;
   const dispatch = useDispatch();
+  const modalStyles = usePopupStyles();
 
   function onCloseModal() {
     dispatch(setSelectedTask(null));
@@ -65,7 +67,13 @@ export default function TaskDetailsPopup() {
                 onClick={(e) => onItemChecked(e, { id, checked })}
               >
                 <div className="form-item__checkbox-box">
-                  {checked && <FontAwesomeIcon icon={faCheck} size="2xs" />}
+                  {checked && (
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      color={colors.ALL_WHITE}
+                      size="2xs"
+                    />
+                  )}
                 </div>
                 <span className="form-item__checkbox-name">{name}</span>
               </div>

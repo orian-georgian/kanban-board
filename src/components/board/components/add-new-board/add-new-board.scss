@@ -30,11 +30,31 @@
     margin-top: 10px;
   }
 
+  .add-column-button {
+    margin-top: 20px;
+  }
+
   &.dark-theme {
     .board-column {
       background-color: $dark-gray;
       border-color: $border-gray;
       color: $snow-white;
+
+      svg:last-child {
+        &:hover {
+          path {
+            fill: $clean-purple;
+          }
+        }
+      }
+    }
+  }
+
+  &.light-theme {
+    .board-column {
+      background-color: $all-white;
+      border-color: $shy-border-gray;
+      color: $dark-gray;
 
       svg:last-child {
         &:hover {
