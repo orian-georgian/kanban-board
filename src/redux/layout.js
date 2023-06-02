@@ -2,8 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { themes } from "../constants/general";
 
+const prefersDarkMode = window.matchMedia(
+  "(prefers-color-scheme: dark)"
+).matches;
 const initialState = {
-  theme: themes.DARK,
+  theme: prefersDarkMode ? themes.DARK : themes.LIGHT,
 };
 
 const layoutSlice = createSlice({

@@ -203,7 +203,7 @@ export default function AddNewBoard() {
         <div className="kanban-popup__title">
           <span>Create New Board</span>
           <FontAwesomeIcon
-            className="close-icon"
+            className="times-icon"
             icon={faTimes}
             size="lg"
             onClick={onCloseModal}

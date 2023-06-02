@@ -4,6 +4,7 @@ const initialState = {
   data: [],
   selectedTask: null,
   loading: false,
+  showNewTaskPopup: false,
 };
 
 const tasksSlice = createSlice({
@@ -47,12 +48,17 @@ const tasksSlice = createSlice({
         ),
       };
     },
+    setShowNewTaskPopup: (state, action) => ({
+      ...state,
+      showNewTaskPopup: action.payload,
+    }),
   },
 });
 
 export const {
   loadTasks,
   setSelectedTask,
+  setShowNewTaskPopup,
   setLoading,
   updateStatus,
   updateSubtaskState,

@@ -79,7 +79,11 @@
 .kanban-popup {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 25px;
+
+  .times-icon {
+    cursor: pointer;
+  }
 
   &__title {
     font-size: 20px;
@@ -87,10 +91,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    .close-icon {
-      cursor: pointer;
-    }
   }
 
   &__description {
@@ -133,6 +133,7 @@
     &__textbox {
       flex: 1;
 
+      textarea,
       input {
         width: 100%;
         border-radius: 4px;
@@ -144,6 +145,11 @@
         &::placeholder {
           opacity: 0.4;
         }
+      }
+
+      textarea {
+        height: 100px;
+        resize: none;
       }
     }
 
@@ -271,20 +277,20 @@
   }
 
   &.kanban-popup {
-    .kanban-popup__title {
-      color: $all-white;
+    .times-icon {
+      path {
+        fill: $all-white;
+      }
 
-      .close-icon {
+      &:hover {
         path {
-          fill: $all-white;
-        }
-
-        &:hover {
-          path {
-            fill: $dirty-white;
-          }
+          fill: $dirty-white;
         }
       }
+    }
+
+    .kanban-popup__title {
+      color: $all-white;
     }
 
     .kanban-popup__description {
@@ -304,6 +310,7 @@
 
       &__colorbox,
       &__textbox {
+        textarea,
         input {
           background-color: $dark-gray;
           border-color: $border-gray;
@@ -379,21 +386,21 @@
     background-color: $all-white;
   }
 
+  .times-icon {
+    path {
+      fill: $dark-gray;
+    }
+
+    &:hover {
+      path {
+        fill: $deep-dark-gray;
+      }
+    }
+  }
+
   &.kanban-popup {
     .kanban-popup__title {
       color: $dark-gray;
-
-      .close-icon {
-        path {
-          fill: $dark-gray;
-        }
-
-        &:hover {
-          path {
-            fill: $deep-dark-gray;
-          }
-        }
-      }
     }
 
     .kanban-popup__description {
@@ -413,6 +420,7 @@
 
       &__colorbox,
       &__textbox {
+        textarea,
         input {
           background-color: $all-white;
           border-color: $shy-border-gray;

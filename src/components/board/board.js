@@ -7,6 +7,7 @@ import { loadTasks, setLoading } from "../../redux/tasks";
 import Column from "./components/column/column";
 import Loader from "../loader/loader";
 import TaskDetailsPopup from "./components/task-details-popup/task-details-popup";
+import AddNewTask from "./components/add-new-task/add-new-task";
 
 import "./board.scss";
 
@@ -40,6 +41,7 @@ export default function Board() {
         ))
       )}
       <TaskDetailsPopup />
+      <AddNewTask />
     </main>
   );
 }
