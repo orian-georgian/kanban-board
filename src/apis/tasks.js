@@ -10,7 +10,7 @@ export function loadTasksApi(boardId) {
           isOk: true,
           data: tasks,
         }),
-      1000
+      300
     )
   );
 }

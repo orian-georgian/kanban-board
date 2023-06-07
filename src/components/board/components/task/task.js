@@ -18,7 +18,7 @@ const Task = memo(({ task }) => {
   return (
     <div className="kanban-task">
       <div onClick={onTitleClick} className="kanban-task__title">
-        {task.name}
+        {task.title}
       </div>
       <div className="kanban-task__subtasks">{`${finishedSubtasks} of ${task.subtasks.length} subtasks`}</div>
     </div>

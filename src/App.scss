@@ -74,6 +74,16 @@
       cursor: default;
     }
   }
+
+  &.button-danger {
+    background: $true-danger;
+    color: $all-white;
+
+    &:hover:not(:disabled),
+    &:focus {
+      background: $more-danger;
+    }
+  }
 }
 
 .kanban-popup {
@@ -303,6 +313,7 @@
       }
 
       .input-invalid {
+        textarea,
         input {
           border-color: $honest-error;
         }

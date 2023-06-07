@@ -8,7 +8,7 @@ export function loadBoardsApi() {
           isOk: true,
           data: Boards,
         }),
-      1000
+      500
     )
   );
 }

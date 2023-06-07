@@ -32,7 +32,7 @@ export default function Menu() {
     if (!activeBoard) {
       dispatch(setActiveBoard(boards[0]));
     }
-  }, []);
+  }, [activeBoard, boards, dispatch]);
 
   return (
     <div className="kanban-menu">

@@ -1,94 +1,89 @@
 import Modal from "react-modal";
-import { useState, useRef } from "react";
-import { useSelector, useDispatch, batch } from "react-redux";
-import { setShowNewTaskPopup } from "../../../../redux/tasks";
-import { statuses } from "../../../../data/statuses";
+import { useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setShowNewTaskPopup, addTask } from "../../../../redux/tasks";
 import statusesEnum from "../../../../data/statuses";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ErrorInfo from "../../../error-info/error-info";
-import {
-  faCircle,
-  faTimes,
-  faPlus,
-  faSave,
-  faTableList,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faPlus } from "@fortawesome/free-solid-svg-icons";
 import usePopupStyles from "../../../../hooks/use-popup-styles";
+import useForm from "../../../../hooks/useForm";
+import validate from "../../../../utils/create-task-form-validations";
 
 import "./add-new-task.scss";
 
 const initialSubtask = {
-  id: 0,
+  id: Date.now(),
   name: "",
   checked: false,
+};
+
+const initialState = {
+  title: "",
+  description: "",
+  subtasks: [],
+  status: statusesEnum.TODO,
 };
 
 export default function AddNewTask() {
   const showNewTaskPopup = useSelector((state) => state.tasks.showNewTaskPopup);
   const theme = useSelector((state) => state.layout.theme);
   const activeBoard = useSelector((state) => state.boards.activeBoard);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [status, setStatus] = useState(statusesEnum.TODO);
-  const [subtasks, setSubtasks] = useState([initialSubtask]);
-  const [errors, setErrors] = useState({
-    title: null,
-    description: null,
-    status: null,
-  });
+  const {
+    errors,
+    values,
+    handleChange,
+    handleListItemChange,
+    handleSubmit,
+    mutateFormState,
+    clearError,
+    resetForm,
+  } = useForm(initialState, createTask, validate);
   const modalStyles = usePopupStyles();
   const dispatch = useDispatch();
 
-  function onCloseModal() {
+  function closeModal() {
     dispatch(setShowNewTaskPopup(false));
+    resetForm();
   }
 
-  function onTitleChange(e) {
-    e.preventDefault();
-    setTitle(e.target.value);
-    setErrors((prevState) => ({
-      ...prevState,
-      title: null,
-    }));
+  function addNewSubtask() {
+    mutateFormState({
+      subtasks: [...values.subtasks, { ...initialSubtask, id: Date.now() }],
+    });
   }
 
-  function onDescriptionChange(e) {
-    e.preventDefault();
-    setDescription(e.target.value);
-    setErrors((prevState) => ({
-      ...prevState,
-      description: null,
-    }));
+  function removeSubtask(subtaskId) {
+    mutateFormState({
+      subtasks: values.subtasks?.filter(({ id }) => id !== subtaskId),
+    });
+    clearError(`subtasks${subtaskId}`);
   }
 
-  function onStatusChange(e) {
-    e.preventDefault();
-    setStatus(e.target.value);
-    setErrors((prevState) => ({
-      ...prevState,
-      status: null,
-    }));
+  function createTask() {
+    dispatch(
+      addTask({
+        id: Date.now(),
+        boardId: activeBoard.id,
+        ...values,
+      })
+    );
+    closeModal();
   }
 
-  function onAddNewSubtask() {
-    setSubtasks((prevState) => [
-      ...prevState,
-      { ...initialSubtask, id: prevState.length + 1 },
-    ]);
+  function initializeModal() {
+    mutateFormState({
+      subtasks: [{ ...initialSubtask }],
+    });
   }
-
-  function onSubtaskRemove(subtaskId) {
-    setSubtasks((prevState) => prevState.filter(({ id }) => id !== subtaskId));
-  }
-
-  function onCreateTask() {}
 
   return (
     <Modal
       ariaHideApp={false}
       isOpen={showNewTaskPopup}
-      onRequestClose={onCloseModal}
+      onRequestClose={closeModal}
+      onAfterOpen={initializeModal}
       shouldCloseOnEsc={true}
       shouldCloseOnOverlayClick={false}
       style={modalStyles}
@@ -100,9 +95,10 @@ export default function AddNewTask() {
             className="times-icon"
             icon={faTimes}
             size="lg"
-            onClick={onCloseModal}
+            onClick={closeModal}
           />
         </div>
+
         <div className="form-item">
           <div className="form-item__label">Title</div>
           <div
@@ -112,10 +108,11 @@ export default function AddNewTask() {
           >
             <input
               type="text"
+              name="title"
               autoFocus={true}
               placeholder="e.g. Take coffee break"
-              value={title}
-              onChange={onTitleChange}
+              value={values?.title || ""}
+              onChange={handleChange}
             />
           </div>
           {!!errors.title && <ErrorInfo message={errors.title} />}
@@ -129,10 +126,10 @@ export default function AddNewTask() {
           >
             <textarea
               type="text"
-              autoFocus={true}
+              name="description"
               placeholder="e.g. It's always good to take a break. This 15 minute break will recharge your batteries a little."
-              value={description}
-              onChange={onDescriptionChange}
+              value={values?.description || ""}
+              onChange={handleChange}
             />
           </div>
           {!!errors.description && <ErrorInfo message={errors.description} />}
@@ -140,25 +137,37 @@ export default function AddNewTask() {
 
         <div className="form-item">
           <div className="form-item__label">Subtasks</div>
-          {subtasks.map((subtask) => (
-            <div key={subtask?.id} className="form-item__textbox subtask-item">
+          {values?.subtasks?.map((subtask) => (
+            <div
+              key={subtask?.id}
+              className={`form-item__textbox subtask-item ${
+                !!errors[`subtasks${subtask.id}`]
+                  ? "input-invalid"
+                  : "input-valid"
+              }`}
+            >
               <input
+                name="subtasks"
                 type="text"
                 autoFocus={true}
                 placeholder="e.g. Make coffee"
                 value={subtask.name}
+                onChange={(e) => handleListItemChange(e, subtask.id)}
               />
               <FontAwesomeIcon
                 className="times-icon"
                 icon={faTimes}
                 size="lg"
-                onClick={() => onSubtaskRemove(subtask.id)}
+                onClick={() => removeSubtask(subtask.id)}
               />
+              {!!errors[`subtasks${subtask.id}`] && (
+                <ErrorInfo message={errors[`subtasks${subtask.id}`]} />
+              )}
             </div>
           ))}
           <button
             className="add-column-button kanban-button button-default button-100"
-            onClick={onAddNewSubtask}
+            onClick={addNewSubtask}
           >
             <FontAwesomeIcon icon={faPlus} /> Add New Subtask
           </button>
@@ -167,18 +176,23 @@ export default function AddNewTask() {
         <div className="form-item">
           <div className="form-item__label">Status</div>
           <div className="form-item__selectbox">
-            <select value={status} onChange={onStatusChange}>
+            <select
+              name="status"
+              value={values?.status}
+              onChange={handleChange}
+            >
               {activeBoard?.columns.map(({ value }) => (
                 <option key={value}>{value}</option>
               ))}
             </select>
           </div>
+          {!!errors.status && <ErrorInfo message={errors.status} />}
         </div>
 
         <div className="form-item">
           <button
             className="kanban-button button-primary button-100"
-            onClick={onCreateTask}
+            onClick={handleSubmit}
           >
             <span>Create Task</span>
           </button>

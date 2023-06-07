@@ -4,9 +4,10 @@ import {
   setSelectedTask,
   updateSubtaskState,
   updateStatus,
+  removeTask,
 } from "../../../../redux/tasks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes, faTrash } from "@fortawesome/free-solid-svg-icons";
 import usePopupStyles from "../../../../hooks/use-popup-styles";
 import { colors } from "../../../../constants/general";
 
@@ -21,7 +22,7 @@ export default function TaskDetailsPopup() {
   const dispatch = useDispatch();
   const modalStyles = usePopupStyles();
 
-  function onCloseModal() {
+  function closeModal() {
     dispatch(setSelectedTask(null));
   }
 
@@ -40,18 +41,31 @@ export default function TaskDetailsPopup() {
     });
   }
 
+  function onDeleteTask() {
+    dispatch(removeTask(selectedTask.id));
+    closeModal();
+  }
+
   if (!selectedTask) return null;
 
   return (
     <Modal
       ariaHideApp={false}
       isOpen={!!selectedTask}
-      onRequestClose={onCloseModal}
+      onRequestClose={closeModal}
       shouldCloseOnOverlayClick={true}
       style={modalStyles}
     >
       <div className={`kanban-popup ${theme}-theme`}>
-        <div className="kanban-popup__title">{selectedTask.name}</div>
+        <div className="kanban-popup__title">
+          <span>{selectedTask.title}</span>
+          <FontAwesomeIcon
+            className="times-icon"
+            icon={faTimes}
+            size="lg"
+            onClick={closeModal}
+          />
+        </div>
         <div className="kanban-popup__description">
           {selectedTask.description}
         </div>
@@ -89,6 +103,15 @@ export default function TaskDetailsPopup() {
               ))}
             </select>
           </div>
+        </div>
+        <div className="form-item">
+          <button
+            className="kanban-button button-default button-100"
+            onClick={onDeleteTask}
+          >
+            <FontAwesomeIcon icon={faTrash} size="lg" onClick={closeModal} />
+            <span>Delete Task</span>
+          </button>
         </div>
       </div>
     </Modal>

@@ -29,7 +29,7 @@ export default function Board() {
         }
       })();
     }
-  }, [activeBoard?.id]);
+  }, [activeBoard, dispatch]);
 
   return (
     <main className="kanban-board">

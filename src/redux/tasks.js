@@ -52,10 +52,20 @@ const tasksSlice = createSlice({
       ...state,
       showNewTaskPopup: action.payload,
     }),
+    addTask: (state, action) => ({
+      ...state,
+      data: [...state.data, action.payload],
+    }),
+    removeTask: (state, action) => ({
+      ...state,
+      data: state.data.filter((task) => task.id !== action.payload),
+    }),
   },
 });
 
 export const {
+  addTask,
+  removeTask,
   loadTasks,
   setSelectedTask,
   setShowNewTaskPopup,
