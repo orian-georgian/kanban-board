@@ -3,11 +3,11 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import "./logo.scss";
 
-export default function Logo() {
+export default function Logo({ hasText = true }) {
   return (
     <div className="kanban-logo">
       <FontAwesomeIcon icon={faBars} transform={{ rotate: 90 }} />
-      <span>kanban</span>
+      {hasText && <span>kanban</span>}
     </div>
   );
 }

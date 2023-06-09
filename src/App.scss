@@ -22,6 +22,16 @@
       width: calc(100vw - 280px);
     }
   }
+
+  &.hidden-sidebar {
+    .menu {
+      display: none;
+    }
+
+    .board {
+      width: 100vw;
+    }
+  }
 }
 
 .kanban-button {
@@ -32,7 +42,6 @@
   gap: 10px;
   border: none;
   padding: 12px 20px;
-  margin-left: auto;
   text-decoration: none;
   font-size: 13px;
   font-weight: 600;
@@ -89,7 +98,7 @@
 .kanban-popup {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 20px;
 
   .times-icon {
     cursor: pointer;
@@ -101,6 +110,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
+
+    svg {
+      align-self: flex-start;
+    }
   }
 
   &__description {
@@ -113,7 +127,7 @@
     &__label {
       font-size: 14px;
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
 
     &__multi-inputs {
@@ -240,6 +254,7 @@
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
+        outline: none;
 
         option {
           padding: 10px;
@@ -498,5 +513,21 @@
         background: $deep-dark-gray;
       }
     }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .kanban-app {
+    .menu {
+      display: none;
+    }
+
+    .board {
+      width: 100vw;
+    }
+  }
+
+  .kanban-popup {
+    gap: 15px;
   }
 }

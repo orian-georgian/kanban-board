@@ -7,6 +7,7 @@ const prefersDarkMode = window.matchMedia(
 ).matches;
 const initialState = {
   theme: prefersDarkMode ? themes.DARK : themes.LIGHT,
+  isSideBarVisible: window.innerWidth > 600,
 };
 
 const layoutSlice = createSlice({
@@ -14,8 +15,12 @@ const layoutSlice = createSlice({
   initialState,
   reducers: {
     toggleTheme: (state, action) => ({ ...state, theme: action.payload }),
+    toggleSidebar: (state) => ({
+      ...state,
+      isSideBarVisible: !state.isSideBarVisible,
+    }),
   },
 });
 
-export const { toggleTheme } = layoutSlice.actions;
+export const { toggleTheme, toggleSidebar } = layoutSlice.actions;
 export default layoutSlice.reducer;

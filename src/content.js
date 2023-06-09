@@ -11,6 +11,9 @@ import Loader from "./components/loader/loader";
 export default function Content() {
   const loading = useSelector((state) => state.boards.loading);
   const theme = useSelector((state) => state.layout.theme);
+  const isSideBarVisible = useSelector(
+    (state) => state.layout.isSideBarVisible
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,7 +37,11 @@ export default function Content() {
   }
 
   return (
-    <div className={`kanban-app ${theme}-theme`}>
+    <div
+      className={`kanban-app ${theme}-theme ${
+        isSideBarVisible ? "visible-sidebar" : "hidden-sidebar"
+      }`}
+    >
       <section className="kanban-app__item menu">
         <VerticalMenu />
       </section>

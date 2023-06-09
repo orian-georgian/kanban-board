@@ -1,14 +1,14 @@
 import Modal from "react-modal";
-import { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setShowNewTaskPopup, addTask } from "../../../../redux/tasks";
 import statusesEnum from "../../../../data/statuses";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ErrorInfo from "../../../error-info/error-info";
 import { faTimes, faPlus } from "@fortawesome/free-solid-svg-icons";
+
+import ErrorInfo from "../../../error-info/error-info";
 import usePopupStyles from "../../../../hooks/use-popup-styles";
-import useForm from "../../../../hooks/useForm";
+import useForm from "../../../../hooks/use-form";
 import validate from "../../../../utils/create-task-form-validations";
 
 import "./add-new-task.scss";

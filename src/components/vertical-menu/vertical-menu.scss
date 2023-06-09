@@ -8,8 +8,17 @@
   flex-direction: column;
   gap: 30px;
 
+  .kanban-logo {
+    margin-left: 25px;
+  }
+
   .kanban-toggle-switch {
+    margin-top: 0;
+  }
+
+  .kanban-toggle-sidebar {
     margin-top: auto;
+    margin-bottom: -15px;
   }
 }
 

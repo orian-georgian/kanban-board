@@ -1,10 +1,9 @@
-@import "../../../../styles/variables.scss";
+@import "../../styles/variables.scss";
 
 .kanban-logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-left: 25px;
 
   svg {
     width: 28px;

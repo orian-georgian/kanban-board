@@ -1,0 +1,55 @@
+@import "../../styles/variables.scss";
+
+.kanban-toggle-sidebar {
+  margin-left: 25px;
+  cursor: pointer;
+  font-weight: 500;
+
+  svg {
+    margin-right: 10px;
+  }
+}
+
+.dark-theme {
+  .kanban-toggle-sidebar {
+    color: $light-gray;
+
+    svg {
+      path {
+        fill: $light-gray;
+      }
+    }
+
+    &:hover {
+      color: $dirty-white;
+
+      svg {
+        path {
+          fill: $dirty-white;
+        }
+      }
+    }
+  }
+}
+
+.light-theme {
+  .kanban-toggle-sidebar {
+    color: $dark-gray;
+
+    svg {
+      path {
+        fill: $dark-gray;
+      }
+    }
+
+    &:hover {
+      color: $clean-purple;
+
+      svg {
+        path {
+          fill: $clean-purple;
+        }
+      }
+    }
+  }
+}
